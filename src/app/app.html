@@ -1,0 +1,30 @@
+<div style="font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background: #f9f9f9;">
+  
+  <h2 style="color: #2c3e50; text-align: center;">🦷 Kalendarz Stomatologa Krystiana Mołczana</h2>
+
+  <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 30px;">
+    <h4 style="margin-top: 0;">Nowa wizyta</h4>
+    <input [(ngModel)]="nowyPacjent.nazwisko" placeholder="Imię i Nazwisko" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+      <input [(ngModel)]="nowyPacjent.data" type="date" style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+      <input [(ngModel)]="nowyPacjent.godzina" type="time" style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+    </div>
+    <button (click)="dodajWizyte()" style="width: 100%; padding: 10px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
+      Zapisz pacjenta
+    </button>
+  </div>
+
+  <div>
+    <h4>Zaplanowane wizyty ({{ wizyty.length }})</h4>
+    <div *ngFor="let w of wizyty; let i = index" style="background: white; border-left: 5px solid #3498db; margin-bottom: 10px; padding: 10px; display: flex; justify-content: space-between; align-items: center; border-radius: 4px;">
+      <div>
+        <strong>{{ w.nazwisko }}</strong><br>
+        <small style="color: #7f8c8d;">📅 {{ w.data }} | 🕒 {{ w.godzina }}</small>
+      </div>
+      <button (click)="usunWizyte(i)" style="background: #e74c3c; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Usuń</button>
+    </div>
+    
+    <p *ngIf="wizyty.length === 0" style="text-align: center; color: #95a5a6;">Brak zaplanowanych wizyt.</p>
+  </div>
+
+</div>
